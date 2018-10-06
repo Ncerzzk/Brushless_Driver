@@ -1,0 +1,47 @@
+Removed Pin From Net: NetName=HALL_A Pin=P4-2
+Added Component: Designator=R24(RES_0603)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Value"; Value = "4.7K"; VariantName = "[No Variations]"
+Added Component: Designator=R25(RES_0603)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Value"; Value = "4.7K"; VariantName = "[No Variations]"
+Added Component: Designator=R26(RES_0603)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Value"; Value = "330"; VariantName = "[No Variations]"
+Added Component: Designator=R27(RES_0603)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Value"; Value = "4.7K"; VariantName = "[No Variations]"
+Added Component: Designator=R28(RES_0603)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Value"; Value = "330"; VariantName = "[No Variations]"
+Added Component: Designator=R29(RES_0603)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Value"; Value = "330"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=HALL_A Pin=P4-3
+Added Pin To Net: NetName=3V3 Pin=R24-2
+Added Pin To Net: NetName=3V3 Pin=R25-1
+Added Pin To Net: NetName=HALL_A Pin=R26-1
+Added Pin To Net: NetName=3V3 Pin=R27-1
+Added Pin To Net: NetName=HALL_A Pin=R28-1
+Added Pin To Net: NetName=HALL_C Pin=R29-1
+Added Pin To Net: NetName=HALL1 Pin=MCU1-59
+Added Pin To Net: NetName=HALL1 Pin=R24-1
+Added Net: Name=HALL1
+Added Pin To Net: NetName=HALL2 Pin=MCU1-61
+Added Pin To Net: NetName=HALL2 Pin=R25-2
+Added Net: Name=HALL2
+Added Pin To Net: NetName=HALL3 Pin=MCU1-62
+Added Pin To Net: NetName=HALL3 Pin=R27-2
+Added Net: Name=HALL3
+Added Pin To Net: NetName=NetR26_2 Pin=R26-2
+Added Net: Name=NetR26_2
+Added Pin To Net: NetName=NetR28_2 Pin=R28-2
+Added Net: Name=NetR28_2
+Added Pin To Net: NetName=NetR29_2 Pin=R29-2
+Added Net: Name=NetR29_2
+Added Member To Class: ClassName=brushless Member=Component R24 Res_0603
+Added Member To Class: ClassName=brushless Member=Component R25 Res_0603
+Added Member To Class: ClassName=brushless Member=Component R26 Res_0603
+Added Member To Class: ClassName=brushless Member=Component R27 Res_0603
+Added Member To Class: ClassName=brushless Member=Component R28 Res_0603
+Added Member To Class: ClassName=brushless Member=Component R29 Res_0603

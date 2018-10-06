@@ -1,0 +1,5 @@
+Added Pin To Net: NetName=3V3 Pin=MCU1-1
+Added Pin To Net: NetName=GND Pin=MCU1-18
+Added Pin To Net: NetName=3V3 Pin=MCU1-19
+Added Pin To Net: NetName=GND Pin=MCU1-31
+Added Pin To Net: NetName=3V3 Pin=MCU1-32

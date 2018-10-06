@@ -1,0 +1,6 @@
+Removed Pin From Net: NetName=HALL_A Pin=P4-3
+Removed Pin From Net: NetName=HALL_A Pin=R28-1
+Added Pin To Net: NetName=HALL_A Pin=P4-2
+Added Pin To Net: NetName=HALL_B Pin=P4-3
+Added Pin To Net: NetName=HALL_B Pin=R28-1
+Added Net: Name=HALL_B

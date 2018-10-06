@@ -1,0 +1,8 @@
+/History/
+/__Previews/
+
+*.rar
+!*.PcbDoc
+!*.PrjPcb
+!*.SchDoc
+!*.md

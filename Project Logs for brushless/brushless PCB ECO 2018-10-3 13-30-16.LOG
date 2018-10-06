@@ -1,0 +1,4 @@
+Removed Pin From Net: NetName=CSN Pin=MCU1-33
+Removed Pin From Net: NetName=DC Pin=MCU1-38
+Added Pin To Net: NetName=CSN Pin=MCU1-29
+Added Pin To Net: NetName=DC Pin=MCU1-30

@@ -1,0 +1,2 @@
+Removed Pin From Net: NetName=3V3 Pin=mag-1
+Added Pin To Net: NetName=5V Pin=mag-1

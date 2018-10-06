@@ -1,0 +1,4 @@
+Removed Pin From Net: NetName=TXD Pin=MCU1-42
+Removed Pin From Net: NetName=RXD Pin=MCU1-43
+Added Pin To Net: NetName=TXD Pin=MCU1-53
+Added Pin To Net: NetName=RXD Pin=MCU1-54

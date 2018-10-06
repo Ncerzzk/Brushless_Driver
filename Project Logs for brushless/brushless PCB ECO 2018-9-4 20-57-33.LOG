@@ -1,0 +1,18 @@
+Added Component: Designator=U1(SOP_E150_16)
+Add component. Clean all parameters for all variants
+Added Pin To Net: NetName=5V Pin=U1-1
+Added Pin To Net: NetName=NetR26_2 Pin=U1-2
+Added Pin To Net: NetName=5V Pin=U1-3
+Added Pin To Net: NetName=NetR28_2 Pin=U1-4
+Added Pin To Net: NetName=5V Pin=U1-5
+Added Pin To Net: NetName=NetR29_2 Pin=U1-6
+Added Pin To Net: NetName=PGND Pin=U1-7
+Added Pin To Net: NetName=PGND Pin=U1-8
+Added Pin To Net: NetName=GND Pin=U1-9
+Added Pin To Net: NetName=GND Pin=U1-11
+Added Pin To Net: NetName=HALL3 Pin=U1-12
+Added Pin To Net: NetName=GND Pin=U1-13
+Added Pin To Net: NetName=HALL2 Pin=U1-14
+Added Pin To Net: NetName=GND Pin=U1-15
+Added Pin To Net: NetName=HALL1 Pin=U1-16
+Added Member To Class: ClassName=brushless Member=Component U1 TLP281-4

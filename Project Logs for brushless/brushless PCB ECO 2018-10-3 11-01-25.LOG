@@ -1,0 +1,10 @@
+Added Component: Designator=mag(HDR1X5_2.54_180)
+Add component. Clean all parameters for all variants
+Added Pin To Net: NetName=3V3 Pin=mag-1
+Added Pin To Net: NetName=MOSI Pin=mag-2
+Added Pin To Net: NetName=SCLK Pin=mag-4
+Added Pin To Net: NetName=GND Pin=mag-5
+Added Pin To Net: NetName=MISO Pin=mag-3
+Added Pin To Net: NetName=MISO Pin=MCU1-35
+Added Net: Name=MISO
+Added Member To Class: ClassName=brushless Member=Component mag HDR1x5_2.54
