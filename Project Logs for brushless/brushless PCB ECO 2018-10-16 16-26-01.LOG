@@ -1,0 +1,10 @@
+Removed Pin From Net: NetName=3V3 Pin=LDO1-4
+Removed Pin From Net: NetName=GND Pin=mag-5
+Change Component Footprint: Designator=mag Old Footprint=HDR1X5_2.54_180 New Footprint=HDR1X6_2.54_180
+Change Component Comment : Designator=mag Old Comment=HDR1x5_2.54 New Comment=HDR1x6_2.54
+Added Pin To Net: NetName=GND Pin=mag-6
+Added Pin To Net: NetName=CSN_MAG Pin=mag-5
+Added Net: Name=CSN_MAG
+Added Pin To Net: NetName=PB0 Pin=D9-K
+Added Pin To Net: NetName=PB0 Pin=MCU1-26
+Added Net: Name=PB0

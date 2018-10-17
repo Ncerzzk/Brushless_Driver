@@ -1,0 +1,2 @@
+Change Component Footprint: Designator=FD Old Footprint=SOP_E300_20 New Footprint=TSSOP_E170_P0.65_20
+Added Member To Class: ClassName=brushless Member=Component FD FD6288
