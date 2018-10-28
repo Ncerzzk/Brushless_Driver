@@ -1196,10 +1196,19 @@
         <group>
             <name>User</name>
             <file>
+                <name>$PROJ_DIR$\..\Src\base.c</name>
+            </file>
+            <file>
                 <name>$PROJ_DIR$\..\Src\board.c</name>
             </file>
             <file>
                 <name>$PROJ_DIR$\..\Src\can.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\Src\cmd_fun.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\Src\command.c</name>
             </file>
             <file>
                 <name>$PROJ_DIR$\..\Src\gpio.c</name>

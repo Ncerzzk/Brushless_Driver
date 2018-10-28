@@ -70,6 +70,8 @@ void MX_TIM2_Init(void)
   {
     _Error_Handler(__FILE__, __LINE__);
   }
+	
+	
 
   sConfigOC.OCMode = TIM_OCMODE_PWM1;
   sConfigOC.Pulse = 0;

@@ -2,6 +2,7 @@
 #define __BOARD_H
 
 #include "stm32f1xx_hal.h"
+#include "usart.h"
 
 typedef enum{
   IO_Low=0x00,
@@ -19,14 +20,7 @@ typedef struct{
   Phase Low;       //µÍ¶ËMOS
 }Phase_State;
 
-Phase_State Phase_States[6]={
-  {A,B},
-  {A,C},
-  {B,C},
-  {B,A},
-  {C,A},
-  {C,B}
-};
+
 
 typedef enum{
   AB,AC,BC,BA,CA,CB
@@ -40,5 +34,6 @@ typedef enum{
 #define Set_BH_Speed(x)        TIM2->CCR2=(uint16_t)(x*TIM2->ARR/100.0f)
 #define Set_CH_Speed(x)        TIM2->CCR3=(uint16_t)(x*TIM2->ARR/100.0f)
 
-
+void Set_Phase_High_Speed(Phase phase,float speed);
+void Set_Phase_Low_State(Phase phase,IO_State state);
 #endif

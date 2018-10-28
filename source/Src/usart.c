@@ -43,6 +43,15 @@
 #include "gpio.h"
 
 /* USER CODE BEGIN 0 */
+#include <stdarg.h>
+uint8_t uart_buffer[100 + 1];
+
+uint8_t buffer_rx_temp;
+
+uint8_t buffer_rx[30];
+int buffer_rx_count=0;
+
+uint8_t buffer_rx_OK;
 
 /* USER CODE END 0 */
 
@@ -64,7 +73,11 @@ void MX_UART5_Init(void)
   {
     _Error_Handler(__FILE__, __LINE__);
   }
-
+  
+  HAL_NVIC_SetPriority(UART5_IRQn, 3, 0);
+  HAL_NVIC_EnableIRQ(UART5_IRQn);
+  
+  HAL_UART_Receive_IT(&huart5,&buffer_rx_temp,1);
 }
 
 void HAL_UART_MspInit(UART_HandleTypeDef* uartHandle)
@@ -97,7 +110,8 @@ void HAL_UART_MspInit(UART_HandleTypeDef* uartHandle)
     HAL_NVIC_SetPriority(UART5_IRQn, 3, 0);
     HAL_NVIC_EnableIRQ(UART5_IRQn);
   /* USER CODE BEGIN UART5_MspInit 1 */
-
+  
+    HAL_UART_Receive_IT(&huart5,&buffer_rx_temp,1);
   /* USER CODE END UART5_MspInit 1 */
   }
 }
@@ -131,6 +145,32 @@ void HAL_UART_MspDeInit(UART_HandleTypeDef* uartHandle)
 
 /* USER CODE BEGIN 1 */
 
+void uprintf(char *fmt, ...)
+{
+  int size;
+  
+  va_list arg_ptr;
+  
+  va_start(arg_ptr, fmt);  
+  
+  size=vsnprintf((char*)uart_buffer, 100 + 1, fmt, arg_ptr);
+  va_end(arg_ptr);
+  HAL_UART_Transmit(&HUART_USE,uart_buffer, size,1000);
+}
+
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
+  if(huart->Instance==UART_USE){
+    buffer_rx[buffer_rx_count]=buffer_rx_temp;
+    if(buffer_rx[buffer_rx_count-1]=='\r'&&buffer_rx[buffer_rx_count]=='\n'){
+      buffer_rx[buffer_rx_count-1]='\0';
+      buffer_rx_OK=1;
+      buffer_rx_count=0;
+    }else{
+      buffer_rx_count++;
+      HAL_UART_Receive_IT(huart,&buffer_rx_temp,1);
+    }
+  }
+}
 /* USER CODE END 1 */
 
 /**

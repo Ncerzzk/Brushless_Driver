@@ -48,13 +48,12 @@
 #include "main.h"
 
 /* USER CODE BEGIN Includes */
-
 /* USER CODE END Includes */
 
 extern UART_HandleTypeDef huart5;
 
 /* USER CODE BEGIN Private defines */
-
+void uprintf(char *fmt, ...);
 /* USER CODE END Private defines */
 
 extern void _Error_Handler(char *, int);
@@ -62,7 +61,15 @@ extern void _Error_Handler(char *, int);
 void MX_UART5_Init(void);
 
 /* USER CODE BEGIN Prototypes */
+#define HUART_USE       huart5
+#define UART_USE        (&HUART_USE)->Instance
 
+extern uint8_t buffer_rx_temp;
+
+extern uint8_t buffer_rx[30];
+extern int buffer_rx_count;
+
+extern uint8_t buffer_rx_OK;
 /* USER CODE END Prototypes */
 
 #ifdef __cplusplus

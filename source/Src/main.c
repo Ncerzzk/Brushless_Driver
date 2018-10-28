@@ -45,7 +45,7 @@
 #include "gpio.h"
 
 /* USER CODE BEGIN Includes */
-
+#include "command.h"
 /* USER CODE END Includes */
 
 /* Private variables ---------------------------------------------------------*/
@@ -100,6 +100,7 @@ int main(void)
   MX_TIM7_Init();
 
   /* USER CODE BEGIN 2 */
+  command_init();
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -107,7 +108,11 @@ int main(void)
   while (1)
   {
   /* USER CODE END WHILE */
-
+    if(buffer_rx_OK){
+      analize(buffer_rx);
+      buffer_rx_OK=0;
+    }
+    
   /* USER CODE BEGIN 3 */
 
   }
