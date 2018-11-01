@@ -2,7 +2,7 @@
 
 "D:\Program Files (x86)\IAR Systems\Embedded Workbench 8.0\arm\bin\armjlink2.dll" 
 
-"C:\Users\ncer\Desktop\Brushless_Driver\source\EWARM\source\Exe\source.out" 
+"D:\电路板\brushless\source\EWARM\source\Exe\source.out" 
 
 --plugin "D:\Program Files (x86)\IAR Systems\Embedded Workbench 8.0\arm\bin\armbat.dll" 
 

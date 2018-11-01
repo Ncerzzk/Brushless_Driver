@@ -101,6 +101,7 @@ int main(void)
 
   /* USER CODE BEGIN 2 */
   command_init();
+  uprintf("hello,world!\r\n");
   /* USER CODE END 2 */
 
   /* Infinite loop */

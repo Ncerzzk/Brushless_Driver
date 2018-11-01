@@ -20,13 +20,13 @@ void Phase_Loop(){
 }
 void Phase_Change(Phase_State target,float speed){
   if(Now_Phase.High==target.High){
-    // ÀıÈçAC->AB
-    // ¸Ä±äµÍÇÅ±Û
+    // ä¾‹å¦‚AC->AB
+    // æ”¹å˜ä½æ¡¥è‡‚
     Set_Phase_Low_State(Now_Phase.Low,LOW_CLOSE);
     Set_Phase_Low_State(target.Low,LOW_OPEN);
   }else{
-    // ÀıÈçAC->BC
-    // ¸Ä±ä¸ßÇÅ±Û
+    // ä¾‹å¦‚AC->BC
+    // æ”¹å˜é«˜æ¡¥è‡‚
     Set_Phase_High_Speed(Now_Phase.High,0);
     Set_Phase_High_Speed(target.High,speed);
   }
