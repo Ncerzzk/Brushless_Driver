@@ -41,7 +41,8 @@
 #include "tim.h"
 
 /* USER CODE BEGIN 0 */
-
+#include "board.h"
+#include "usart.h"
 /* USER CODE END 0 */
 
 TIM_HandleTypeDef htim2;
@@ -105,9 +106,9 @@ void MX_TIM6_Init(void)
   TIM_MasterConfigTypeDef sMasterConfig;
 
   htim6.Instance = TIM6;
-  htim6.Init.Prescaler = 0;
+  htim6.Init.Prescaler = 35;
   htim6.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim6.Init.Period = 0;
+  htim6.Init.Period = 999;
   if (HAL_TIM_Base_Init(&htim6) != HAL_OK)
   {
     _Error_Handler(__FILE__, __LINE__);
@@ -119,6 +120,11 @@ void MX_TIM6_Init(void)
   {
     _Error_Handler(__FILE__, __LINE__);
   }
+
+  HAL_NVIC_SetPriority(TIM6_IRQn, 1, 0);
+  HAL_NVIC_EnableIRQ(TIM6_IRQn);
+    
+  HAL_TIM_Base_Start_IT(&htim6);
 
 }
 /* TIM7 init function */
@@ -257,7 +263,35 @@ void HAL_TIM_Base_MspDeInit(TIM_HandleTypeDef* tim_baseHandle)
 } 
 
 /* USER CODE BEGIN 1 */
+int Time_1ms_Cnt=0;
 
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
+  if(htim->Instance!=TIM6){
+    return ;
+  }
+#ifdef SENSOR_MAG
+  int16_t position;
+  int temp;
+
+  
+    position=Read_Mag();
+    if(position<Start_Position){
+      position+=MAG_ENCODER_LINES;
+    }
+    temp=(int)((float)(position-Start_Position)/MIN_ANGLE)+1;
+    temp%=6;
+    
+    if(Board_Mode!=NORMAL){
+      return ;
+    }
+    
+    if(temp!=Phase_Change_Cnt){
+      Phase_Change_Cnt=temp;
+      //uprintf("cnt:%d,pos:%d\r\n",Phase_Change_Cnt,position);
+      Phase_Change(*Phase_Const[Phase_Change_Cnt],TEST_TABLE_SPEED);
+    }
+#endif 
+}
 /* USER CODE END 1 */
 
 /**

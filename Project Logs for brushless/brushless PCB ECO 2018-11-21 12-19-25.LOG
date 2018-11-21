@@ -1,0 +1,3 @@
+Removed Pin From Net: NetName=3V3 Pin=LDO1-4
+Removed Pin From Net: NetName=GND Pin=P7-4
+Added Pin To Net: NetName=PGND Pin=P7-4

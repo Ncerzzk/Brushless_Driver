@@ -46,6 +46,8 @@
 
 /* USER CODE BEGIN Includes */
 #include "command.h"
+#include "board.h"
+    
 /* USER CODE END Includes */
 
 /* Private variables ---------------------------------------------------------*/
@@ -67,7 +69,7 @@ void SystemClock_Config(void);
 
 /* USER CODE END 0 */
 
-int main(void)
+int main(void)                                                                                                   
 {
 
   /* USER CODE BEGIN 1 */
@@ -101,6 +103,7 @@ int main(void)
 
   /* USER CODE BEGIN 2 */
   command_init();
+  Phase_Table_Init();
   uprintf("hello,world!\r\n");
   /* USER CODE END 2 */
 
@@ -170,7 +173,18 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
-
+void HAL_SYSTICK_Callback(void){
+  if(Board_Mode!=NORMAL)
+    return ;
+  Phase_Open_Cnt++;
+  if(Phase_Open_Cnt>OPEN_TIME_MAX){
+    Close_Phases();
+    Phase_Open_Cnt=0;
+    uprintf("close phases because too long!\r\n");
+    uprintf("now position is %d\r\n",Hall_Position);
+    Phase_Change(*Phase_Table_Using[(Hall_Position+1)%6],Motor_Duty);
+  }
+}
 /* USER CODE END 4 */
 
 /**

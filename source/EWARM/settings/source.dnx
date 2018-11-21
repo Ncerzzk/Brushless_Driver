@@ -20,7 +20,7 @@
         <LeaveTargetRunning>_ 0</LeaveTargetRunning>
     </JLinkDriver>
     <DebugChecksum>
-        <Checksum>4125480890</Checksum>
+        <Checksum>422604756</Checksum>
     </DebugChecksum>
     <Exceptions>
         <StopOnUncaught>_ 0</StopOnUncaught>
@@ -53,6 +53,10 @@
         <ITMportsLogFile>0</ITMportsLogFile>
         <ITMlogFile>$PROJ_DIR$\ITM.log</ITMlogFile>
     </SWOTraceHWSettings>
+    <Registers>
+        <regBase0>TIM2_CCR3 10</regBase0>
+        <regBase1>TIM2_CCR1 10</regBase1>
+    </Registers>
     <Trace1>
         <Enabled>0</Enabled>
         <ShowSource>1</ShowSource>
@@ -111,10 +115,11 @@
         <ShowTimeSum>1</ShowTimeSum>
         <SumSortOrder>0</SumSortOrder>
     </EventLog>
-    <TermIOLog>
+    <LogFile>
         <LoggingEnabled>_ 0</LoggingEnabled>
         <LogFile>_ ""</LogFile>
-    </TermIOLog>
+        <Category>_ 0</Category>
+    </LogFile>
     <DriverProfiling>
         <Enabled>0</Enabled>
         <Mode>1</Mode>
@@ -133,20 +138,21 @@
         <Probe0>I0</Probe0>
         <ProbeSetup0>2 1 1 2 0 0</ProbeSetup0>
     </PowerProbe>
-    <LogFile>
+    <TermIOLog>
         <LoggingEnabled>_ 0</LoggingEnabled>
         <LogFile>_ ""</LogFile>
-        <Category>_ 0</Category>
-    </LogFile>
+    </TermIOLog>
     <DisassembleMode>
         <mode>0</mode>
     </DisassembleMode>
     <Breakpoints2>
-        <Count>0</Count>
+        <Bp0>_ 1 "EMUL_CODE" "{$PROJ_DIR$\..\Src\tim.c}.294.1" 0 0 1 "" 0 "" 0</Bp0>
+        <Count>1</Count>
     </Breakpoints2>
     <Aliases>
         <A0>_ "C:\Users\ncer\Desktop\Brushless_Driver\source\Src\main.c" "D:\电路板\brushless\source\Src\main.c"</A0>
-        <Count>1</Count>
+        <A1>_ "D:\OneDrive\brushless\source\Src\main.c" "D:\电路板\OneDrive\brushless\source\Src\main.c"</A1>
+        <Count>2</Count>
         <SuppressDialog>1</SuppressDialog>
     </Aliases>
 </settings>

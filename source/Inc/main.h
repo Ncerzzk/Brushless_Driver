@@ -48,8 +48,8 @@
 
 #define KEY_Pin GPIO_PIN_1
 #define KEY_GPIO_Port GPIOB
-#define CSN_Pin GPIO_PIN_10
-#define CSN_GPIO_Port GPIOB
+#define CSN_Pin GPIO_PIN_6
+#define CSN_GPIO_Port GPIOC
 #define OLED_DC_Pin GPIO_PIN_11
 #define OLED_DC_GPIO_Port GPIOB
 #define OLED_RES_Pin GPIO_PIN_12

@@ -27,6 +27,14 @@ void command_init(void){
 
   add_cmd("write",write_prams);
   add_cmd("load",load_prams);
+  
+  add_cmd("set_phase",set_phase);
+  add_cmd("p_change",phase_change);
+  add_cmd("read_mag",read_mag);
+  add_cmd("set_mode",set_mode);
+  add_cmd("set_duty",set_motor_duty);
+  add_cmd("set_mode_s",set_mode_s);
+  
 }
 
 

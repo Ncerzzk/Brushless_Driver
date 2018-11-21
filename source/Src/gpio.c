@@ -40,7 +40,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "gpio.h"
 /* USER CODE BEGIN 0 */
-
+#include "board.h"
 /* USER CODE END 0 */
 
 /*----------------------------------------------------------------------------*/
@@ -74,6 +74,11 @@ void MX_GPIO_Init(void)
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOB, CSN_Pin|OLED_DC_Pin|OLED_RES_Pin, GPIO_PIN_RESET);
 
+  GPIO_InitStruct.Pin = GPIO_PIN_0|GPIO_PIN_1|GPIO_PIN_2;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+  
   /*Configure GPIO pins : PC13 PC14 PC15 */
   GPIO_InitStruct.Pin = GPIO_PIN_13|GPIO_PIN_14|GPIO_PIN_15;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
@@ -82,7 +87,7 @@ void MX_GPIO_Init(void)
 
   /*Configure GPIO pins : PA3 PA4 PA5 */
   GPIO_InitStruct.Pin = GPIO_PIN_3|GPIO_PIN_4|GPIO_PIN_5;
-  GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING;
+  GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING_FALLING;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
@@ -93,11 +98,15 @@ void MX_GPIO_Init(void)
   HAL_GPIO_Init(KEY_GPIO_Port, &GPIO_InitStruct);
 
   /*Configure GPIO pins : PBPin PBPin PBPin */
-  GPIO_InitStruct.Pin = CSN_Pin|OLED_DC_Pin|OLED_RES_Pin;
+  GPIO_InitStruct.Pin = OLED_DC_Pin|OLED_RES_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
+  GPIO_InitStruct.Pin = CSN_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
   /* EXTI interrupt init*/
   HAL_NVIC_SetPriority(EXTI3_IRQn, 1, 0);
   HAL_NVIC_EnableIRQ(EXTI3_IRQn);
@@ -112,7 +121,33 @@ void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 2 */
-
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin){
+  Hall_Position=Get_Hall_Position();
+  if(Board_Mode==NORMAL){
+    Phase_Change(*Phase_Table_Using[Hall_Position],Motor_Duty);
+  }else if(Board_Mode==TEST){
+    for(int i=2;i>=0;--i){
+      if((Hall_Position>>i)&1){
+        uprintf("1");
+      }else{
+        uprintf("0");
+      }      
+    }
+    uprintf("\r\n");    
+  }else{
+    Phase_Test_Table[Test_Table_Cnt]=Hall_Position;
+    Phase_Change(*Phase_Const[Test_Table_Cnt],TEST_TABLE_SPEED);
+    Test_Table_Cnt++;
+    if(Test_Table_Cnt>5){
+      Test_Table_Cnt=0; //一个周期后，停止
+      Board_Mode=TEST;
+      uprintf("Test Table Over!\r\n");
+      for(int i=0;i<6;++i){
+        uprintf("Hall State is %d\r\n",Phase_Test_Table[i]);
+      }
+    }
+  }
+}
 /* USER CODE END 2 */
 
 /**
