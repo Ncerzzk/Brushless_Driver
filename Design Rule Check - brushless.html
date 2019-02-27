@@ -1,0 +1,546 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<style type="text/css">
+		h1, h2, h3, h4, h5, h6 {
+			font-family : segoe ui;
+			color : black;
+			background-color : #EDE7D9;
+			padding: 0.3em;
+		}
+
+		h1 {
+			font-size: 1.2em;
+		}		
+
+		h2 {
+			font-size: 1.2em;
+		}
+
+		body {
+			font-family : segoe ui;
+		}
+
+		td, th {
+			padding: 0.5em;
+			text-align : left;
+			width: 10em;
+		}
+		th {
+			background-color : #EEEEEE;
+
+		}
+		th.column1, td.column1 {
+			text-align: left;
+			width : auto;
+		}
+		table {
+			width : 100%;
+			font-size: 0.9em;
+		}
+
+		.DRC_summary_header {
+			padding-bottom : 0.1em;
+			border : 0px solid black;
+			width: 100%;
+			align: left;
+		}
+
+		.DRC_summary_header_col1,
+		.DRC_summary_header_col2, 
+		.DRC_summary_header_col3 {
+			color : black;
+			font-size:100%;
+			padding : 0em;
+			padding-top : 0.2em;
+			padding-bottom 0.2em;
+			border : 0px solid black;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.DRC_summary_header_col1 {
+			font-weight: bold;
+			width: 8em;
+		}
+
+		.DRC_summary_header_col2 {
+			width: 0.1em;
+		
+		}
+
+		.DRC_summary_header_col3 {
+			width : auto;
+		}
+
+		.header_holder {
+		    Width = 100%;
+		    border = 0px solid green;
+		    padding = 0;
+		}
+
+
+		.front_matter, .front_matter_column1, .front_matter_column2, .front_matter_column3
+		{
+			left : 0;
+			top : 0;
+			padding: 0em;
+			padding-top : 0.1em;
+			border : 0px solid black;
+			width : 100%;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.front_matter_column1 {
+			width : 8em;
+			font-weight: bold;
+		}
+
+		.front_matter_column2 {
+			width: 0.1em;
+		}
+
+		.front_matter_column3 {
+			width : auto;
+		}
+
+		.total_column1, .total_column {
+			font-weight : bold;
+		}
+		.total_column1 {
+			text-align : left;
+		}
+		.warning, .error {
+			color : red;
+			font-weight : bold;
+		}
+		tr.onmouseout_odd {
+			background-color : #white;
+		}
+		tr.onmouseout_even { 
+			background-color : #FAFAFA;
+		}
+		tr.onmouseover_odd, tr.onmouseover_even { 
+			background-color : #EEEEEE;
+		} 
+		a:link, a:visited, .q a:link,.q a:active,.q {
+			color: #21489e; 
+		}
+		a:link.callback, a:visited.callback { 
+			color: #21489e;
+		}
+		a:link.customize, a:visited.customize {
+			color: #C0C0C0;
+			position: absolute; 
+			right: 10px;
+		}	
+		p.contents_level1 {
+			font-weight : bold;
+			font-size : 110%;
+			margin : 0.5em;
+		}
+		p.contents_level2 {
+			position : relative;
+			left : 20px;
+			margin : 0.5em;
+		}
+	</style><script type="text/javascript">
+		function coordToMils(coord) {
+			var number = coord / 10000;
+			
+			if (number != number.toFixed(3))
+				number = number.toFixed(3);
+
+			return number + 'mil'
+		}
+
+		function coordToMM(coord) {
+			var number = 0.0254 * coord / 10000;
+			
+			if (number != number.toFixed(4))
+				number = number.toFixed(4);
+			
+			return number + 'mm'
+		}
+	
+		function convertCoord(coordNode, units) {
+			for (var i = 0; i < coordNode.childNodes.length; i++) {
+				coordNode.removeChild(coordNode.childNodes[i]);
+			}
+
+			var coord = coordNode.getAttribute('value');
+			if (coord != null) {
+				if (units == 'mm') {
+					textNode = document.createTextNode(coordToMM(coord));
+					coordNode.appendChild(textNode);
+				} else if (units == 'mil') {
+					textNode = document.createTextNode(coordToMils(coord));		
+					coordNode.appendChild(textNode);	
+				}
+			}
+		}
+	
+		function convertUnits(unitNode, units) {
+			for (var i = 0; i < unitNode.childNodes.length; i++) {
+				unitNode.removeChild(unitNode.childNodes[i]);		
+			}
+		
+			textNode = document.createTextNode(units); 
+			unitNode.appendChild(textNode);
+		}
+	
+		function changeUnits(radio_input, units) {
+			if (radio_input.checked) {
+			
+				var elements = document.getElementsByName('coordinate');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertCoord(elements[i], units);
+					}
+				}
+	
+				var elements = document.getElementsByName('units');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertUnits(elements[i], units);
+					}
+				}
+			}
+		}
+	</script><title>Design Rule Verification Report</title>
+</head>
+<body onload=""><img ALT="Altium" src="
+			file://D:\Users\Public\Documents\Altium\AD17\Templates\AD_logo.png
+		"><h1>Design Rule Verification Report</h1>
+<table class="header_holder">
+<td class="column1">
+<table class="front_matter">
+<tr class="front_matter">
+<td class="front_matter_column1">Date:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">2018/11/21</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">15:11:40</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Elapsed Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">00:00:01</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Filename:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3"><a href="file:///D:\%E7%94%B5%E8%B7%AF%E6%9D%BF\OneDrive\brushless\brushless.PcbDoc" class="file"><acronym title="D:\电路板\OneDrive\brushless\brushless.PcbDoc">D:\电路板\OneDrive\brushless\brushless.PcbDoc</acronym></a></td>
+</tr>
+</table>
+</td>
+<td class="column2">
+<table class="DRC_summary_header">
+<tr>
+<td class="DRC_summary_header_col1">Warnings:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3">0</td></tr>
+<tr>
+<td class="DRC_summary_header_col1">Rule Violations:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3" style="color : red">74</td></tr>
+</table>
+</td>
+</table><a name="ID5YB4SFPCWGLCOOPTSJTNXMJ5KNOCVXG0XGQROHC55B3COLMYGVCJ"><h2>Summary</h2></a><table>
+<tr>
+<th class="column1">Warnings</th>
+<th class="column2">Count</th>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">0</td>
+</tr>
+</table><br><table>
+<tr>
+<th class="column1">Rule Violations</th>
+<th class="column2">Count</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDBDM3RKTSLFVBLY2XCOO0JSNVPOZHXRBDPQLVMSEH12NZ0BIIFA2E">Clearance Constraint (Gap=6mil) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDGG5SV0UMOEVZOS3ZQWKMIHPW2B5CXL1OHVUVALLQCJKV0XUFF0GP">Short-Circuit Constraint (Allowed=No) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDRAHGFT2WF0WHFYGEULIRMM5RGLVPDGQLIJ3LFHGOS3KXZCLPZWG">Un-Routed Net Constraint ( (All) )</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDZRALLNODSN3ICJK3YE1XBXZ5GG5CKJTESIHTMCNNQSKOFUU55KPP">Width Constraint (Min=10mil) (Max=100mil) (Preferred=10mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDYEPVAOB10EWJEIPSSC4CYBOXVLYASESWJP040ZM4GJALKQ2CP12E">Power Plane Connect Rule(Direct Connect )(Expansion=20mil) (Conductor Width=10mil) (Air Gap=10mil) (Entries=4) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID2M2PNJ5EIYN5DLAQA4FQ2W3EBLBASJQGCTVD5OC0TQ2TSUTXDEBG">Hole Size Constraint (Min=1mil) (Max=100mil) (All)</a></td>
+<td class="column2">3</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDIOLLHPV2GZE2PUPXGTAK3B2HGDQHUZBQBE3NJH5CVC4M5RRACBH">Hole To Hole Clearance (Gap=10mil) (All),(All)</a></td>
+<td class="column2">1</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDTZ2OHURMQO5MOLZWXYNESZ0THDR0WNH1LLAE1GNN5LKINU1SFK2H">Minimum Solder Mask Sliver (Gap=10mil) (All),(All)</a></td>
+<td class="column2">70</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDYZZ3J440XLZC3RL1FUAXUSWMLIAOSXZW2PSOCEUJ1VYHWPZ2QRK">Net Antennae (Tolerance=0mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID2MVDXVQBUHCGMJI1HRZKTH3GOLKWSU4IW0OQ3PFYFXN0OVHYMJQI">Height Constraint (Min=0mil) (Max=1000mil) (Prefered=500mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">74</td>
+</tr>
+</table><br><a name="ID2M2PNJ5EIYN5DLAQA4FQ2W3EBLBASJQGCTVD5OC0TQ2TSUTXDEBG"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Hole Size Constraint (Min=1mil) (Max=100mil) (All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\%E7%94%B5%E8%B7%AF%E6%9D%BF\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1145.32mil|Location2.X=1264.68mil|Location1.Y=3800.32mil|Location2.Y=3919.68mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\电路板\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1145.32mil|Location2.X=1264.68mil|Location1.Y=3800.32mil|Location2.Y=3919.68mil|Absolute=True">Hole Size Constraint: (118.11mil &gt; 100mil) Pad Free-3(1205mil,3860mil) on Multi-Layer Actual Hole Size = 118.11mil</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\%E7%94%B5%E8%B7%AF%E6%9D%BF\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3465.32mil|Location2.X=3584.68mil|Location1.Y=3800.32mil|Location2.Y=3919.68mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\电路板\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3465.32mil|Location2.X=3584.68mil|Location1.Y=3800.32mil|Location2.Y=3919.68mil|Absolute=True">Hole Size Constraint: (118.11mil &gt; 100mil) Pad Free-3(3525mil,3860mil) on Multi-Layer Actual Hole Size = 118.11mil</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\%E7%94%B5%E8%B7%AF%E6%9D%BF\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3465.32mil|Location2.X=3584.68mil|Location1.Y=2345.32mil|Location2.Y=2464.68mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\电路板\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3465.32mil|Location2.X=3584.68mil|Location1.Y=2345.32mil|Location2.Y=2464.68mil|Absolute=True">Hole Size Constraint: (118.11mil &gt; 100mil) Pad Free-3(3525mil,2405mil) on Multi-Layer Actual Hole Size = 118.11mil</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDIOLLHPV2GZE2PUPXGTAK3B2HGDQHUZBQBE3NJH5CVC4M5RRACBH"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Hole To Hole Clearance (Gap=10mil) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\%E7%94%B5%E8%B7%AF%E6%9D%BF\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3006.167mil|Location2.X=3013.833mil|Location1.Y=3251.167mil|Location2.Y=3258.833mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\电路板\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3006.167mil|Location2.X=3013.833mil|Location1.Y=3251.167mil|Location2.Y=3258.833mil|Absolute=True">Hole To Hole Clearance Constraint: (Collision &lt; 10mil) Between Via (3010mil,3255mil) from Top Layer to Bottom Layer And Via (3010mil,3255mil) from Top Layer to Bottom Layer Pad/Via Touching Holes</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDTZ2OHURMQO5MOLZWXYNESZ0THDR0WNH1LLAE1GNN5LKINU1SFK2H"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Minimum Solder Mask Sliver (Gap=10mil) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\%E7%94%B5%E8%B7%AF%E6%9D%BF\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2605.905mil|Location2.X=2617.155mil|Location1.Y=3558.263mil|Location2.Y=3569.513mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\电路板\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2605.905mil|Location2.X=2617.155mil|Location1.Y=3558.263mil|Location2.Y=3569.513mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (9.75mil &lt; 10mil) Between Via (2630mil,3560mil) from Top Layer to Bottom Layer And Pad LDO1-2(2585mil,3600mil) on Top Layer [Top Solder] Mask Sliver [9.75mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\%E7%94%B5%E8%B7%AF%E6%9D%BF\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2642.924mil|Location2.X=2654.174mil|Location1.Y=3558.262mil|Location2.Y=3569.512mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\电路板\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2642.924mil|Location2.X=2654.174mil|Location1.Y=3558.262mil|Location2.Y=3569.512mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (9.904mil &lt; 10mil) Between Via (2630mil,3560mil) from Top Layer to Bottom Layer And Pad LDO1-1(2675.157mil,3600mil) on Top Layer [Top Solder] Mask Sliver [9.904mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\%E7%94%B5%E8%B7%AF%E6%9D%BF\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2155.375mil|Location2.X=2166.625mil|Location1.Y=2924.532mil|Location2.Y=2935.782mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\电路板\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2155.375mil|Location2.X=2166.625mil|Location1.Y=2924.532mil|Location2.Y=2935.782mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (5.591mil &lt; 10mil) Between Pad FD-15(2180mil,2942.953mil) on Top Layer And Pad FD-16(2180mil,2917.362mil) on Top Layer [Top Solder] Mask Sliver [5.591mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\%E7%94%B5%E8%B7%AF%E6%9D%BF\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2155.375mil|Location2.X=2166.625mil|Location1.Y=2898.942mil|Location2.Y=2910.192mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\电路板\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2155.375mil|Location2.X=2166.625mil|Location1.Y=2898.942mil|Location2.Y=2910.192mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (5.59mil &lt; 10mil) Between Pad FD-17(2180mil,2891.772mil) on Top Layer And Pad FD-16(2180mil,2917.362mil) on Top Layer [Top Solder] Mask Sliver [5.59mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\%E7%94%B5%E8%B7%AF%E6%9D%BF\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2155.375mil|Location2.X=2166.625mil|Location1.Y=2873.351mil|Location2.Y=2884.601mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\电路板\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2155.375mil|Location2.X=2166.625mil|Location1.Y=2873.351mil|Location2.Y=2884.601mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (5.591mil &lt; 10mil) Between Pad FD-18(2180mil,2866.181mil) on Top Layer And Pad FD-17(2180mil,2891.772mil) on Top Layer [Top Solder] Mask Sliver [5.591mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\%E7%94%B5%E8%B7%AF%E6%9D%BF\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2155.375mil|Location2.X=2166.625mil|Location1.Y=2847.761mil|Location2.Y=2859.011mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\电路板\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2155.375mil|Location2.X=2166.625mil|Location1.Y=2847.761mil|Location2.Y=2859.011mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (5.59mil &lt; 10mil) Between Pad FD-19(2180mil,2840.591mil) on Top Layer And Pad FD-18(2180mil,2866.181mil) on Top Layer [Top Solder] Mask Sliver [5.59mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\%E7%94%B5%E8%B7%AF%E6%9D%BF\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2155.375mil|Location2.X=2166.625mil|Location1.Y=2822.17mil|Location2.Y=2833.42mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\电路板\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2155.375mil|Location2.X=2166.625mil|Location1.Y=2822.17mil|Location2.Y=2833.42mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (5.591mil &lt; 10mil) Between Pad FD-20(2180mil,2815mil) on Top Layer And Pad FD-19(2180mil,2840.591mil) on Top Layer [Top Solder] Mask Sliver [5.591mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\%E7%94%B5%E8%B7%AF%E6%9D%BF\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2206.895mil|Location2.X=2218.145mil|Location1.Y=2836.889mil|Location2.Y=2848.139mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\电路板\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2206.895mil|Location2.X=2218.145mil|Location1.Y=2836.889mil|Location2.Y=2848.139mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (7.312mil &lt; 10mil) Between Via (2230mil,2845mil) from Top Layer to Bottom Layer And Pad FD-19(2180mil,2840.591mil) on Top Layer [Top Solder] Mask Sliver [7.312mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\%E7%94%B5%E8%B7%AF%E6%9D%BF\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2155.375mil|Location2.X=2166.625mil|Location1.Y=2950.123mil|Location2.Y=2961.373mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\电路板\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2155.375mil|Location2.X=2166.625mil|Location1.Y=2950.123mil|Location2.Y=2961.373mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (5.59mil &lt; 10mil) Between Pad FD-14(2180mil,2968.543mil) on Top Layer And Pad FD-15(2180mil,2942.953mil) on Top Layer [Top Solder] Mask Sliver [5.59mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\%E7%94%B5%E8%B7%AF%E6%9D%BF\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2206.879mil|Location2.X=2218.129mil|Location1.Y=2938.22mil|Location2.Y=2949.47mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\电路板\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2206.879mil|Location2.X=2218.129mil|Location1.Y=2938.22mil|Location2.Y=2949.47mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (7.067mil &lt; 10mil) Between Via (2230mil,2945mil) from Top Layer to Bottom Layer And Pad FD-15(2180mil,2942.953mil) on Top Layer [Top Solder] Mask Sliver [7.067mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\%E7%94%B5%E8%B7%AF%E6%9D%BF\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2155.375mil|Location2.X=2166.625mil|Location1.Y=2975.714mil|Location2.Y=2986.964mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\电路板\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2155.375mil|Location2.X=2166.625mil|Location1.Y=2975.714mil|Location2.Y=2986.964mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (5.591mil &lt; 10mil) Between Pad FD-13(2180mil,2994.134mil) on Top Layer And Pad FD-14(2180mil,2968.543mil) on Top Layer [Top Solder] Mask Sliver [5.591mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\%E7%94%B5%E8%B7%AF%E6%9D%BF\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2155.375mil|Location2.X=2166.625mil|Location1.Y=3001.304mil|Location2.Y=3012.554mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\电路板\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2155.375mil|Location2.X=2166.625mil|Location1.Y=3001.304mil|Location2.Y=3012.554mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (5.59mil &lt; 10mil) Between Pad FD-12(2180mil,3019.724mil) on Top Layer And Pad FD-13(2180mil,2994.134mil) on Top Layer [Top Solder] Mask Sliver [5.59mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\%E7%94%B5%E8%B7%AF%E6%9D%BF\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2155.375mil|Location2.X=2166.625mil|Location1.Y=3026.895mil|Location2.Y=3038.145mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\电路板\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2155.375mil|Location2.X=2166.625mil|Location1.Y=3026.895mil|Location2.Y=3038.145mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (5.59mil &lt; 10mil) Between Pad FD-11(2180mil,3045.315mil) on Top Layer And Pad FD-12(2180mil,3019.724mil) on Top Layer [Top Solder] Mask Sliver [5.59mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\%E7%94%B5%E8%B7%AF%E6%9D%BF\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2385.375mil|Location2.X=2396.625mil|Location1.Y=3026.895mil|Location2.Y=3038.145mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\电路板\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2385.375mil|Location2.X=2396.625mil|Location1.Y=3026.895mil|Location2.Y=3038.145mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (5.59mil &lt; 10mil) Between Pad FD-9(2410mil,3019.724mil) on Top Layer And Pad FD-10(2410mil,3045.315mil) on Top Layer [Top Solder] Mask Sliver [5.59mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\%E7%94%B5%E8%B7%AF%E6%9D%BF\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2385.375mil|Location2.X=2396.625mil|Location1.Y=3001.304mil|Location2.Y=3012.554mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\电路板\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2385.375mil|Location2.X=2396.625mil|Location1.Y=3001.304mil|Location2.Y=3012.554mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (5.59mil &lt; 10mil) Between Pad FD-8(2410mil,2994.134mil) on Top Layer And Pad FD-9(2410mil,3019.724mil) on Top Layer [Top Solder] Mask Sliver [5.59mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\%E7%94%B5%E8%B7%AF%E6%9D%BF\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2436.875mil|Location2.X=2448.125mil|Location1.Y=3014.219mil|Location2.Y=3025.469mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\电路板\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2436.875mil|Location2.X=2448.125mil|Location1.Y=3014.219mil|Location2.Y=3025.469mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (7.001mil &lt; 10mil) Between Via (2460mil,3020mil) from Top Layer to Bottom Layer And Pad FD-9(2410mil,3019.724mil) on Top Layer [Top Solder] Mask Sliver [7.001mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\%E7%94%B5%E8%B7%AF%E6%9D%BF\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2385.375mil|Location2.X=2396.625mil|Location1.Y=2975.714mil|Location2.Y=2986.964mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\电路板\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2385.375mil|Location2.X=2396.625mil|Location1.Y=2975.714mil|Location2.Y=2986.964mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (5.591mil &lt; 10mil) Between Pad FD-7(2410mil,2968.543mil) on Top Layer And Pad FD-8(2410mil,2994.134mil) on Top Layer [Top Solder] Mask Sliver [5.591mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\%E7%94%B5%E8%B7%AF%E6%9D%BF\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2385.375mil|Location2.X=2396.625mil|Location1.Y=2950.123mil|Location2.Y=2961.373mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\电路板\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2385.375mil|Location2.X=2396.625mil|Location1.Y=2950.123mil|Location2.Y=2961.373mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (5.59mil &lt; 10mil) Between Pad FD-6(2410mil,2942.953mil) on Top Layer And Pad FD-7(2410mil,2968.543mil) on Top Layer [Top Solder] Mask Sliver [5.59mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\%E7%94%B5%E8%B7%AF%E6%9D%BF\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2385.375mil|Location2.X=2396.625mil|Location1.Y=2924.532mil|Location2.Y=2935.782mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\电路板\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2385.375mil|Location2.X=2396.625mil|Location1.Y=2924.532mil|Location2.Y=2935.782mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (5.591mil &lt; 10mil) Between Pad FD-5(2410mil,2917.362mil) on Top Layer And Pad FD-6(2410mil,2942.953mil) on Top Layer [Top Solder] Mask Sliver [5.591mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\%E7%94%B5%E8%B7%AF%E6%9D%BF\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2385.375mil|Location2.X=2396.625mil|Location1.Y=2847.761mil|Location2.Y=2859.011mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\电路板\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2385.375mil|Location2.X=2396.625mil|Location1.Y=2847.761mil|Location2.Y=2859.011mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (5.59mil &lt; 10mil) Between Pad FD-3(2410mil,2866.181mil) on Top Layer And Pad FD-2(2410mil,2840.591mil) on Top Layer [Top Solder] Mask Sliver [5.59mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\%E7%94%B5%E8%B7%AF%E6%9D%BF\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2385.375mil|Location2.X=2396.625mil|Location1.Y=2822.17mil|Location2.Y=2833.42mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\电路板\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2385.375mil|Location2.X=2396.625mil|Location1.Y=2822.17mil|Location2.Y=2833.42mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (5.591mil &lt; 10mil) Between Pad FD-1(2410mil,2815mil) on Top Layer And Pad FD-2(2410mil,2840.591mil) on Top Layer [Top Solder] Mask Sliver [5.591mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\%E7%94%B5%E8%B7%AF%E6%9D%BF\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2385.375mil|Location2.X=2396.625mil|Location1.Y=2873.351mil|Location2.Y=2884.601mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\电路板\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2385.375mil|Location2.X=2396.625mil|Location1.Y=2873.351mil|Location2.Y=2884.601mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (5.591mil &lt; 10mil) Between Pad FD-4(2410mil,2891.772mil) on Top Layer And Pad FD-3(2410mil,2866.181mil) on Top Layer [Top Solder] Mask Sliver [5.591mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\%E7%94%B5%E8%B7%AF%E6%9D%BF\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2385.375mil|Location2.X=2396.625mil|Location1.Y=2898.942mil|Location2.Y=2910.192mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\电路板\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2385.375mil|Location2.X=2396.625mil|Location1.Y=2898.942mil|Location2.Y=2910.192mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (5.59mil &lt; 10mil) Between Pad FD-5(2410mil,2917.362mil) on Top Layer And Pad FD-4(2410mil,2891.772mil) on Top Layer [Top Solder] Mask Sliver [5.59mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\%E7%94%B5%E8%B7%AF%E6%9D%BF\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2201.196mil|Location2.X=2212.446mil|Location1.Y=3436.609mil|Location2.Y=3447.859mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\电路板\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2201.196mil|Location2.X=2212.446mil|Location1.Y=3436.609mil|Location2.Y=3447.859mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (6.797mil &lt; 10mil) Between Via (2195mil,3455mil) from Top Layer to Bottom Layer And Pad TPS1-4(2220mil,3410mil) on Top Layer [Top Solder] Mask Sliver [6.797mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\%E7%94%B5%E8%B7%AF%E6%9D%BF\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2177.554mil|Location2.X=2188.804mil|Location1.Y=3436.609mil|Location2.Y=3447.859mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\电路板\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2177.554mil|Location2.X=2188.804mil|Location1.Y=3436.609mil|Location2.Y=3447.859mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (6.797mil &lt; 10mil) Between Via (2195mil,3455mil) from Top Layer to Bottom Layer And Pad TPS1-3(2170mil,3410mil) on Top Layer [Top Solder] Mask Sliver [6.797mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\%E7%94%B5%E8%B7%AF%E6%9D%BF\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2313.342mil|Location2.X=2324.592mil|Location1.Y=3670.277mil|Location2.Y=3681.527mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\电路板\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2313.342mil|Location2.X=2324.592mil|Location1.Y=3670.277mil|Location2.Y=3681.527mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.133mil &lt; 10mil) Between Pad C23-1(2355mil,3628mil) on Top Layer And Pad L2-2(2285mil,3743mil) on Top Layer [Top Solder] Mask Sliver [8.133mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\%E7%94%B5%E8%B7%AF%E6%9D%BF\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3026.196mil|Location2.X=3037.446mil|Location1.Y=3392.141mil|Location2.Y=3403.391mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\电路板\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3026.196mil|Location2.X=3037.446mil|Location1.Y=3392.141mil|Location2.Y=3403.391mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (6.797mil &lt; 10mil) Between Via (3020mil,3385mil) from Top Layer to Bottom Layer And Pad TJA1-4(3045mil,3430mil) on Top Layer [Top Solder] Mask Sliver [6.797mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\%E7%94%B5%E8%B7%AF%E6%9D%BF\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3002.554mil|Location2.X=3013.804mil|Location1.Y=3392.141mil|Location2.Y=3403.391mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\电路板\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3002.554mil|Location2.X=3013.804mil|Location1.Y=3392.141mil|Location2.Y=3403.391mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (6.797mil &lt; 10mil) Between Via (3020mil,3385mil) from Top Layer to Bottom Layer And Pad TJA1-3(2995mil,3430mil) on Top Layer [Top Solder] Mask Sliver [6.797mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\%E7%94%B5%E8%B7%AF%E6%9D%BF\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2926.124mil|Location2.X=2937.374mil|Location1.Y=3394.714mil|Location2.Y=3405.964mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\电路板\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2926.124mil|Location2.X=2937.374mil|Location1.Y=3394.714mil|Location2.Y=3405.964mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3.302mil &lt; 10mil) Between Via (2920mil,3390mil) from Top Layer to Bottom Layer And Pad TJA1-2(2945mil,3430mil) on Top Layer [Top Solder] Mask Sliver [3.302mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\%E7%94%B5%E8%B7%AF%E6%9D%BF\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2902.626mil|Location2.X=2913.876mil|Location1.Y=3394.714mil|Location2.Y=3405.964mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\电路板\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2902.626mil|Location2.X=2913.876mil|Location1.Y=3394.714mil|Location2.Y=3405.964mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3.302mil &lt; 10mil) Between Via (2920mil,3390mil) from Top Layer to Bottom Layer And Pad TJA1-1(2895mil,3430mil) on Top Layer [Top Solder] Mask Sliver [3.302mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\%E7%94%B5%E8%B7%AF%E6%9D%BF\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2875.718mil|Location2.X=2886.968mil|Location1.Y=3280.868mil|Location2.Y=3292.118mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\电路板\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2875.718mil|Location2.X=2886.968mil|Location1.Y=3280.868mil|Location2.Y=3292.118mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (5.096mil &lt; 10mil) Between Via (2880mil,3270mil) from Top Layer to Bottom Layer And Pad MCU1-64(2882.362mil,3320mil) on Top Layer [Top Solder] Mask Sliver [5.096mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\%E7%94%B5%E8%B7%AF%E6%9D%BF\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2833.11mil|Location2.X=2844.36mil|Location1.Y=3053.053mil|Location2.Y=3064.303mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\电路板\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2833.11mil|Location2.X=2844.36mil|Location1.Y=3053.053mil|Location2.Y=3064.303mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.869mil &lt; 10mil) Between Via (2855mil,3050mil) from Top Layer to Bottom Layer And Pad MCU1-10(2805mil,3065.472mil) on Top Layer [Top Solder] Mask Sliver [8.869mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\%E7%94%B5%E8%B7%AF%E6%9D%BF\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2832.896mil|Location2.X=2844.146mil|Location1.Y=3041.981mil|Location2.Y=3053.231mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\电路板\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2832.896mil|Location2.X=2844.146mil|Location1.Y=3041.981mil|Location2.Y=3053.231mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (5.304mil &lt; 10mil) Between Via (2855mil,3050mil) from Top Layer to Bottom Layer And Pad MCU1-11(2805mil,3045.787mil) on Top Layer [Top Solder] Mask Sliver [5.304mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\%E7%94%B5%E8%B7%AF%E6%9D%BF\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1589.931mil|Location2.X=1601.181mil|Location1.Y=2751.943mil|Location2.Y=2763.193mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\电路板\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1589.931mil|Location2.X=1601.181mil|Location1.Y=2751.943mil|Location2.Y=2763.193mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (7.642mil &lt; 10mil) Between Via (1592.561mil,2740mil) from Top Layer to Bottom Layer And Pad MOS5-4(1690mil,2885mil) on Top Layer [Top Solder] Mask Sliver [7.642mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\%E7%94%B5%E8%B7%AF%E6%9D%BF\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1764.375mil|Location2.X=1775.625mil|Location1.Y=3004.431mil|Location2.Y=3015.681mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\电路板\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1764.375mil|Location2.X=1775.625mil|Location1.Y=3004.431mil|Location2.Y=3015.681mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (1.888mil &lt; 10mil) Between Via (1770mil,3025mil) from Top Layer to Bottom Layer And Pad MOS5-4(1690mil,2885mil) on Top Layer [Top Solder] Mask Sliver [1.888mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\%E7%94%B5%E8%B7%AF%E6%9D%BF\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1759.375mil|Location2.X=1770.625mil|Location1.Y=3309.431mil|Location2.Y=3320.681mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\电路板\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1759.375mil|Location2.X=1770.625mil|Location1.Y=3309.431mil|Location2.Y=3320.681mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (1.888mil &lt; 10mil) Between Via (1765mil,3330mil) from Top Layer to Bottom Layer And Pad MOS3-4(1690mil,3190mil) on Top Layer [Top Solder] Mask Sliver [1.888mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\%E7%94%B5%E8%B7%AF%E6%9D%BF\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1572.686mil|Location2.X=1583.936mil|Location1.Y=3366.229mil|Location2.Y=3377.479mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\电路板\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1572.686mil|Location2.X=1583.936mil|Location1.Y=3366.229mil|Location2.Y=3377.479mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (9.583mil &lt; 10mil) Between Via (1570mil,3355mil) from Top Layer to Bottom Layer And Pad MOS1-4(1690mil,3495mil) on Top Layer [Top Solder] Mask Sliver [9.583mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\%E7%94%B5%E8%B7%AF%E6%9D%BF\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1781.329mil|Location2.X=1792.579mil|Location1.Y=3364.69mil|Location2.Y=3375.94mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\电路板\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1781.329mil|Location2.X=1792.579mil|Location1.Y=3364.69mil|Location2.Y=3375.94mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3.23mil &lt; 10mil) Between Via (1790mil,3355mil) from Top Layer to Bottom Layer And Pad MOS1-4(1690mil,3495mil) on Top Layer [Top Solder] Mask Sliver [3.23mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\%E7%94%B5%E8%B7%AF%E6%9D%BF\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2950.375mil|Location2.X=2961.625mil|Location1.Y=2463.375mil|Location2.Y=2474.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\电路板\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2950.375mil|Location2.X=2961.625mil|Location1.Y=2463.375mil|Location2.Y=2474.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (6mil &lt; 10mil) Between Pad LM1-1(2965mil,2488mil) on Top Layer And Pad LM1-2(2965mil,2450mil) on Top Layer [Top Solder] Mask Sliver [6mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\%E7%94%B5%E8%B7%AF%E6%9D%BF\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2950.375mil|Location2.X=2961.625mil|Location1.Y=2425.375mil|Location2.Y=2436.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\电路板\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2950.375mil|Location2.X=2961.625mil|Location1.Y=2425.375mil|Location2.Y=2436.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (6mil &lt; 10mil) Between Pad LM1-3(2965mil,2412mil) on Top Layer And Pad LM1-2(2965mil,2450mil) on Top Layer [Top Solder] Mask Sliver [6mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\%E7%94%B5%E8%B7%AF%E6%9D%BF\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2968.812mil|Location2.X=2980.062mil|Location1.Y=2426.376mil|Location2.Y=2437.626mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\电路板\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2968.812mil|Location2.X=2980.062mil|Location1.Y=2426.376mil|Location2.Y=2437.626mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.016mil &lt; 10mil) Between Via (2975mil,2450mil) from Top Layer to Bottom Layer And Pad LM1-3(2965mil,2412mil) on Top Layer [Top Solder] Mask Sliver [8.016mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\%E7%94%B5%E8%B7%AF%E6%9D%BF\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2968.812mil|Location2.X=2980.062mil|Location1.Y=2462.374mil|Location2.Y=2473.624mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\电路板\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2968.812mil|Location2.X=2980.062mil|Location1.Y=2462.374mil|Location2.Y=2473.624mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.016mil &lt; 10mil) Between Via (2975mil,2450mil) from Top Layer to Bottom Layer And Pad LM1-1(2965mil,2488mil) on Top Layer [Top Solder] Mask Sliver [8.016mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\%E7%94%B5%E8%B7%AF%E6%9D%BF\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2669.375mil|Location2.X=2680.625mil|Location1.Y=2999.375mil|Location2.Y=3010.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\电路板\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2669.375mil|Location2.X=2680.625mil|Location1.Y=2999.375mil|Location2.Y=3010.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (2mil &lt; 10mil) Between Via (2675mil,2990mil) from Top Layer to Bottom Layer And Pad XT1-1(2670mil,3045mil) on Top Layer [Top Solder] Mask Sliver [2mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\%E7%94%B5%E8%B7%AF%E6%9D%BF\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1564.375mil|Location2.X=1575.625mil|Location1.Y=3364.319mil|Location2.Y=3375.569mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\电路板\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1564.375mil|Location2.X=1575.625mil|Location1.Y=3364.319mil|Location2.Y=3375.569mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (1.888mil &lt; 10mil) Between Via (1570mil,3355mil) from Top Layer to Bottom Layer And Pad MOS2-4(1590mil,3495mil) on Bottom Layer [Bottom Solder] Mask Sliver [1.888mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\%E7%94%B5%E8%B7%AF%E6%9D%BF\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1881.875mil|Location2.X=1893.125mil|Location1.Y=3306.875mil|Location2.Y=3318.125mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\电路板\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1881.875mil|Location2.X=1893.125mil|Location1.Y=3306.875mil|Location2.Y=3318.125mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (7.355mil &lt; 10mil) Between Via (1900mil,3325mil) from Top Layer to Bottom Layer And Pad MOS4-1(1845mil,3285mil) on Bottom Layer [Bottom Solder] Mask Sliver [7.355mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\%E7%94%B5%E8%B7%AF%E6%9D%BF\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1554.375mil|Location2.X=1565.625mil|Location1.Y=3061.819mil|Location2.Y=3073.069mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\电路板\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1554.375mil|Location2.X=1565.625mil|Location1.Y=3061.819mil|Location2.Y=3073.069mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (6.888mil &lt; 10mil) Between Via (1560mil,3050mil) from Top Layer to Bottom Layer And Pad MOS4-4(1590mil,3195mil) on Bottom Layer [Bottom Solder] Mask Sliver [6.888mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\%E7%94%B5%E8%B7%AF%E6%9D%BF\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2385.055mil|Location2.X=2396.305mil|Location1.Y=3139.084mil|Location2.Y=3150.334mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\电路板\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2385.055mil|Location2.X=2396.305mil|Location1.Y=3139.084mil|Location2.Y=3150.334mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.866mil &lt; 10mil) Between Via (2380mil,3135mil) from Top Layer to Bottom Layer And Pad R11-1(2411mil,3165mil) on Bottom Layer [Bottom Solder] Mask Sliver [0.866mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\%E7%94%B5%E8%B7%AF%E6%9D%BF\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2358.114mil|Location2.X=2369.364mil|Location1.Y=3137.506mil|Location2.Y=3148.756mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\电路板\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2358.114mil|Location2.X=2369.364mil|Location1.Y=3137.506mil|Location2.Y=3148.756mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.361mil &lt; 10mil) Between Via (2380mil,3135mil) from Top Layer to Bottom Layer And Pad R11-2(2340mil,3165mil) on Bottom Layer [Bottom Solder] Mask Sliver [8.361mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\%E7%94%B5%E8%B7%AF%E6%9D%BF\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2240.289mil|Location2.X=2251.539mil|Location1.Y=3012.808mil|Location2.Y=3024.058mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\电路板\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2240.289mil|Location2.X=2251.539mil|Location1.Y=3012.808mil|Location2.Y=3024.058mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (6.615mil &lt; 10mil) Between Via (2235mil,3005mil) from Top Layer to Bottom Layer And Pad C12-1(2268mil,3041mil) on Bottom Layer [Bottom Solder] Mask Sliver [6.615mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\%E7%94%B5%E8%B7%AF%E6%9D%BF\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2286.375mil|Location2.X=2297.625mil|Location1.Y=3034.375mil|Location2.Y=3045.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\电路板\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2286.375mil|Location2.X=2297.625mil|Location1.Y=3034.375mil|Location2.Y=3045.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8mil &lt; 10mil) Between Via (2310mil,3040mil) from Top Layer to Bottom Layer And Pad C12-1(2268mil,3041mil) on Bottom Layer [Bottom Solder] Mask Sliver [8mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\%E7%94%B5%E8%B7%AF%E6%9D%BF\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2240.375mil|Location2.X=2251.625mil|Location1.Y=2939.375mil|Location2.Y=2950.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\电路板\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2240.375mil|Location2.X=2251.625mil|Location1.Y=2939.375mil|Location2.Y=2950.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (4mil &lt; 10mil) Between Via (2230mil,2945mil) from Top Layer to Bottom Layer And Pad C13-1(2268mil,2956mil) on Bottom Layer [Bottom Solder] Mask Sliver [4mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\%E7%94%B5%E8%B7%AF%E6%9D%BF\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2286.375mil|Location2.X=2297.625mil|Location1.Y=2949.375mil|Location2.Y=2960.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\电路板\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2286.375mil|Location2.X=2297.625mil|Location1.Y=2949.375mil|Location2.Y=2960.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8mil &lt; 10mil) Between Via (2310mil,2955mil) from Top Layer to Bottom Layer And Pad C13-1(2268mil,2956mil) on Bottom Layer [Bottom Solder] Mask Sliver [8mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\%E7%94%B5%E8%B7%AF%E6%9D%BF\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2314.375mil|Location2.X=2325.625mil|Location1.Y=2865.375mil|Location2.Y=2876.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\电路板\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2314.375mil|Location2.X=2325.625mil|Location1.Y=2865.375mil|Location2.Y=2876.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (6mil &lt; 10mil) Between Via (2303mil,2871mil) from Top Layer to Bottom Layer And Pad D5-2(2339mil,2870mil) on Bottom Layer [Bottom Solder] Mask Sliver [6mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\%E7%94%B5%E8%B7%AF%E6%9D%BF\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2282.875mil|Location2.X=2294.125mil|Location1.Y=2865.375mil|Location2.Y=2876.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\电路板\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2282.875mil|Location2.X=2294.125mil|Location1.Y=2865.375mil|Location2.Y=2876.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (1mil &lt; 10mil) Between Via (2303mil,2871mil) from Top Layer to Bottom Layer And Pad C14-1(2268mil,2871mil) on Bottom Layer [Bottom Solder] Mask Sliver [1mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\%E7%94%B5%E8%B7%AF%E6%9D%BF\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2240.016mil|Location2.X=2251.266mil|Location1.Y=2844.589mil|Location2.Y=2855.839mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\电路板\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2240.016mil|Location2.X=2251.266mil|Location1.Y=2844.589mil|Location2.Y=2855.839mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (4.974mil &lt; 10mil) Between Via (2230mil,2845mil) from Top Layer to Bottom Layer And Pad C14-1(2268mil,2871mil) on Bottom Layer [Bottom Solder] Mask Sliver [4.974mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\%E7%94%B5%E8%B7%AF%E6%9D%BF\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2211.519mil|Location2.X=2222.769mil|Location1.Y=2845.308mil|Location2.Y=2856.558mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\电路板\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2211.519mil|Location2.X=2222.769mil|Location1.Y=2845.308mil|Location2.Y=2856.558mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.318mil &lt; 10mil) Between Via (2230mil,2845mil) from Top Layer to Bottom Layer And Pad C14-2(2197mil,2871mil) on Bottom Layer [Bottom Solder] Mask Sliver [0.318mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\%E7%94%B5%E8%B7%AF%E6%9D%BF\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2384.015mil|Location2.X=2395.265mil|Location1.Y=3116.23mil|Location2.Y=3127.48mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\电路板\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2384.015mil|Location2.X=2395.265mil|Location1.Y=3116.23mil|Location2.Y=3127.48mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (4.601mil &lt; 10mil) Between Via (2380mil,3135mil) from Top Layer to Bottom Layer And Pad R9-1(2411mil,3100mil) on Bottom Layer [Bottom Solder] Mask Sliver [4.601mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\%E7%94%B5%E8%B7%AF%E6%9D%BF\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2874.375mil|Location2.X=2885.625mil|Location1.Y=3280.875mil|Location2.Y=3292.125mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\电路板\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2874.375mil|Location2.X=2885.625mil|Location1.Y=3280.875mil|Location2.Y=3292.125mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (5mil &lt; 10mil) Between Via (2880mil,3270mil) from Top Layer to Bottom Layer And Pad C6-2(2888mil,3309mil) on Bottom Layer [Bottom Solder] Mask Sliver [5mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\%E7%94%B5%E8%B7%AF%E6%9D%BF\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2929.875mil|Location2.X=2941.125mil|Location1.Y=3254.375mil|Location2.Y=3265.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\电路板\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2929.875mil|Location2.X=2941.125mil|Location1.Y=3254.375mil|Location2.Y=3265.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3mil &lt; 10mil) Between Via (2920mil,3260mil) from Top Layer to Bottom Layer And Pad R4-1(2957mil,3252mil) on Bottom Layer [Bottom Solder] Mask Sliver [3mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\%E7%94%B5%E8%B7%AF%E6%9D%BF\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2904.175mil|Location2.X=2915.425mil|Location1.Y=3240.775mil|Location2.Y=3252.025mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\电路板\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2904.175mil|Location2.X=2915.425mil|Location1.Y=3240.775mil|Location2.Y=3252.025mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (6mil &lt; 10mil) Between Via (2920mil,3260mil) from Top Layer to Bottom Layer And Pad C5-2(2888mil,3224mil) on Bottom Layer [Bottom Solder] Mask Sliver [6mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\%E7%94%B5%E8%B7%AF%E6%9D%BF\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2849.375mil|Location2.X=2860.625mil|Location1.Y=3027.875mil|Location2.Y=3039.125mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\电路板\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2849.375mil|Location2.X=2860.625mil|Location1.Y=3027.875mil|Location2.Y=3039.125mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (5mil &lt; 10mil) Between Via (2855mil,3050mil) from Top Layer to Bottom Layer And Pad C3-2(2872mil,3011mil) on Bottom Layer [Bottom Solder] Mask Sliver [5mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\%E7%94%B5%E8%B7%AF%E6%9D%BF\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2894.375mil|Location2.X=2905.625mil|Location1.Y=2749.375mil|Location2.Y=2760.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\电路板\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2894.375mil|Location2.X=2905.625mil|Location1.Y=2749.375mil|Location2.Y=2760.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (2mil &lt; 10mil) Between Via (2900mil,2770mil) from Top Layer to Bottom Layer And Pad R24-2(2880mil,2734mil) on Bottom Layer [Bottom Solder] Mask Sliver [2mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\%E7%94%B5%E8%B7%AF%E6%9D%BF\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2894.375mil|Location2.X=2905.625mil|Location1.Y=2778.875mil|Location2.Y=2790.125mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\电路板\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2894.375mil|Location2.X=2905.625mil|Location1.Y=2778.875mil|Location2.Y=2790.125mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (1mil &lt; 10mil) Between Via (2900mil,2770mil) from Top Layer to Bottom Layer And Pad R24-1(2880mil,2805mil) on Bottom Layer [Bottom Solder] Mask Sliver [1mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\%E7%94%B5%E8%B7%AF%E6%9D%BF\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2985.636mil|Location2.X=2996.886mil|Location1.Y=2436.244mil|Location2.Y=2447.494mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\电路板\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2985.636mil|Location2.X=2996.886mil|Location1.Y=2436.244mil|Location2.Y=2447.494mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.361mil &lt; 10mil) Between Via (2975mil,2450mil) from Top Layer to Bottom Layer And Pad R3-1(3015mil,2420mil) on Bottom Layer [Bottom Solder] Mask Sliver [8.361mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\%E7%94%B5%E8%B7%AF%E6%9D%BF\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2837.262mil|Location2.X=2848.512mil|Location1.Y=2417.627mil|Location2.Y=2428.877mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\电路板\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2837.262mil|Location2.X=2848.512mil|Location1.Y=2417.627mil|Location2.Y=2428.877mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.361mil &lt; 10mil) Between Via (2825mil,2420mil) from Top Layer to Bottom Layer And Pad C15-1(2867mil,2444mil) on Bottom Layer [Bottom Solder] Mask Sliver [8.361mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\%E7%94%B5%E8%B7%AF%E6%9D%BF\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2953.875mil|Location2.X=2965.125mil|Location1.Y=2444.375mil|Location2.Y=2455.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\电路板\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2953.875mil|Location2.X=2965.125mil|Location1.Y=2444.375mil|Location2.Y=2455.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3mil &lt; 10mil) Between Via (2975mil,2450mil) from Top Layer to Bottom Layer And Pad C15-2(2938mil,2444mil) on Bottom Layer [Bottom Solder] Mask Sliver [3mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\%E7%94%B5%E8%B7%AF%E6%9D%BF\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3084.338mil|Location2.X=3095.588mil|Location1.Y=3200.156mil|Location2.Y=3211.406mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\电路板\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3084.338mil|Location2.X=3095.588mil|Location1.Y=3200.156mil|Location2.Y=3211.406mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (6.809mil &lt; 10mil) Between Via (3100mil,3220mil) from Top Layer to Bottom Layer And Pad R31-1(3068mil,3183mil) on Bottom Layer [Bottom Solder] Mask Sliver [6.809mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\%E7%94%B5%E8%B7%AF%E6%9D%BF\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3083.819mil|Location2.X=3095.069mil|Location1.Y=3226.69mil|Location2.Y=3237.94mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\电路板\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3083.819mil|Location2.X=3095.069mil|Location1.Y=3226.69mil|Location2.Y=3237.94mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (4.439mil &lt; 10mil) Between Via (3100mil,3220mil) from Top Layer to Bottom Layer And Pad R31-2(3068mil,3254mil) on Bottom Layer [Bottom Solder] Mask Sliver [4.439mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\%E7%94%B5%E8%B7%AF%E6%9D%BF\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2751.875mil|Location2.X=2763.125mil|Location1.Y=3379.375mil|Location2.Y=3390.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\电路板\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2751.875mil|Location2.X=2763.125mil|Location1.Y=3379.375mil|Location2.Y=3390.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (7mil &lt; 10mil) Between Via (2740mil,3385mil) from Top Layer to Bottom Layer And Via (2775mil,3385mil) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [7mil] / [Bottom Solder] Mask Sliver [7mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\%E7%94%B5%E8%B7%AF%E6%9D%BF\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1771.875mil|Location2.X=1783.125mil|Location1.Y=3336.875mil|Location2.Y=3348.125mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\电路板\OneDrive\brushless\brushless.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1771.875mil|Location2.X=1783.125mil|Location1.Y=3336.875mil|Location2.Y=3348.125mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (7.355mil &lt; 10mil) Between Via (1790mil,3355mil) from Top Layer to Bottom Layer And Via (1765mil,3330mil) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [7.355mil] / [Bottom Solder] Mask Sliver [7.355mil]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br></body>
+</html>

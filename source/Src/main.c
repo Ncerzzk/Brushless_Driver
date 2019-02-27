@@ -182,7 +182,7 @@ void HAL_SYSTICK_Callback(void){
     Phase_Open_Cnt=0;
     uprintf("close phases because too long!\r\n");
     uprintf("now position is %d\r\n",Hall_Position);
-    Phase_Change(*Phase_Table_Using[(Hall_Position+1)%6],Motor_Duty);
+    Phase_Change(*Phase_Table_Using[(Hall_Position+1)%6],Motor_Duty);   //防止卡住，并且进行自启动
   }
 }
 /* USER CODE END 4 */

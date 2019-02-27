@@ -20,19 +20,11 @@ Phase_State * Phase_Table[7]={0};  // 第一个元素是空，因为霍尔没有
 Phase_State * Phase_Table_Reverse[7]={0}; // 反向换向表
 Phase_State ** Phase_Table_Using=0; //当前使用的换向表
 
-uint8_t Phase_Test_Table[6]={1,3,2,6,4,5};//{2,6,4,5,1,3}; // 测试换向表时记录的霍尔状态
-//{5,4,6,2,3,1} //反转时的霍尔状态
-//{&AB,&CB,&CA,&BA,&BC,&AC};
+uint8_t Phase_Test_Table[6]={5,1,3,2,6,4};//{2,6,4,5,1,3}; // 测试换向表时记录的霍尔状态
 
-//将其与正转时候的霍尔状态统一，方便程序里写
-//{2,6,4,5,1,3}
-//{&BA,&CA,&CB,&AB,&AC,&BC}
-//无刷电机的霍尔传感器一般是双极锁存型霍尔传感器，正转与反转在统一位置的霍尔值不同，刚好相反
-//如正转是为010(2),反转时就是101(5)
 Phase_State * const Phase_Const[6]={&AB,&AC,&BC,&BA,&CA,&CB};    
 Phase_State * const Phase_Const_Reverse[6]={&BA,&CA,&CB,&AB,&AC,&BC};
-//{&CB,&CA,&BA,&BC,&AC,&AB};
-//{&CA,&CB,&AB,&AC,&BC,&BA};
+
 int Test_Table_Cnt=0;
 
 float Motor_Duty=30;       //电机占空比
@@ -147,7 +139,7 @@ void Set_To_Statble_Positon(){  //将转子定位到固定的位置
   uint8_t position,last_position;
   int position_same_cnt=0;         //本次位置与上次位置相同的情况 计数值
   for(i=0;i<10;++i){
-    Phase_Change(AB,TEST_TABLE_SPEED);
+    Phase_Change(CB,TEST_TABLE_SPEED); //将转子转到CB处，这样就从AB开始换相
     HAL_Delay(10);
     Close_Phases();
     

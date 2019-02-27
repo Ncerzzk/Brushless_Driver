@@ -11,4 +11,7 @@ void read_mag(int arg_num,char **s,float *args);
 void set_mode(int arg_num,char **s,float * args);
 void set_motor_duty(int arg_num,char **s,float * args);
 void set_mode_s(int arg_num,char **s,float *args);
+
+
+void read_as5047(int arg_num,char **s,float *args);
 #endif

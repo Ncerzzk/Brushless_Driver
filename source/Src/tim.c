@@ -272,24 +272,24 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
 #ifdef SENSOR_MAG
   int16_t position;
   int temp;
-
   
-    position=Read_Mag();
-    if(position<Start_Position){
-      position+=MAG_ENCODER_LINES;
-    }
-    temp=(int)((float)(position-Start_Position)/MIN_ANGLE)+1;
-    temp%=6;
-    
-    if(Board_Mode!=NORMAL){
-      return ;
-    }
-    
-    if(temp!=Phase_Change_Cnt){
-      Phase_Change_Cnt=temp;
-      //uprintf("cnt:%d,pos:%d\r\n",Phase_Change_Cnt,position);
-      Phase_Change(*Phase_Const[Phase_Change_Cnt],TEST_TABLE_SPEED);
-    }
+  
+  position=Read_Mag();
+  if(position<Start_Position){
+    position+=MAG_ENCODER_LINES;
+  }
+  temp=(int)((float)(position-Start_Position)/MIN_ANGLE)+1;
+  temp%=6;
+  
+  if(Board_Mode!=NORMAL){
+    return ;
+  }
+  
+  if(temp!=Phase_Change_Cnt){
+    Phase_Change_Cnt=temp;
+    //uprintf("cnt:%d,pos:%d\r\n",Phase_Change_Cnt,position);
+    Phase_Change(*Phase_Const[Phase_Change_Cnt],TEST_TABLE_SPEED);
+  }
 #endif 
 }
 /* USER CODE END 1 */

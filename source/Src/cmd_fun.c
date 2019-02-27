@@ -198,3 +198,36 @@ void set_motor_duty(int arg_num,char **s,float * args){
   uprintf("ok,set motor duty=%f\r\n",args[0]);
 }
 
+
+void read_as5047(int arg_num,char **s,float *args){
+  uint8_t t_data[2]={0x7F,0xFE};
+  uint8_t r_data[2];
+  uint8_t t_data2[2]={0x40,0x01};
+  //uint16_t t_data[]={0xFFFF};
+  //uint16_t r_data[1]={0};
+  if(arg_num!=0x0000){
+    uprintf("error arg_num!\r\n");
+    return ;
+  }
+  HAL_GPIO_WritePin(CSN_GPIO_Port,CSN_Pin,0);
+  HAL_Delay(1);
+  HAL_SPI_Transmit(&hspi2,(uint8_t *)t_data2,2,1000);
+  HAL_Delay(1);
+  HAL_GPIO_WritePin(CSN_GPIO_Port,CSN_Pin,1);
+  HAL_Delay(1);
+  
+  HAL_GPIO_WritePin(CSN_GPIO_Port,CSN_Pin,0);
+  HAL_Delay(1);
+  HAL_SPI_Transmit(&hspi2,(uint8_t *)t_data,2,1000);
+  HAL_Delay(1);
+  HAL_GPIO_WritePin(CSN_GPIO_Port,CSN_Pin,1);
+  
+  HAL_Delay(1);
+  HAL_GPIO_WritePin(CSN_GPIO_Port,CSN_Pin,0);
+  HAL_Delay(1);
+  HAL_SPI_Receive(&hspi2,(uint8_t *) r_data,2,1000);
+  HAL_Delay(1);
+  HAL_GPIO_WritePin(CSN_GPIO_Port,CSN_Pin,1);  
+
+  uprintf("as5047:%d\r\n",(r_data[0]<<8|r_data[1])&0x3fff);
+}

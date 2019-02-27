@@ -1,17 +1,17 @@
-"D:\OneDrive\brushless\source\Src\tim.c"
+"D:\电路板\OneDrive\brushless\source\Src\tim.c"
 -std=c11
 -ferror-limit=0
 -fbracket-depth=512
 -I
-D:\OneDrive\brushless\source\EWARM/../Inc
+D:\电路板\OneDrive\brushless\source\EWARM/../Inc
 -I
-D:\OneDrive\brushless\source\EWARM/../Drivers/STM32F1xx_HAL_Driver/Inc
+D:\电路板\OneDrive\brushless\source\EWARM/../Drivers/STM32F1xx_HAL_Driver/Inc
 -I
-D:\OneDrive\brushless\source\EWARM/../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy
+D:\电路板\OneDrive\brushless\source\EWARM/../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy
 -I
-D:\OneDrive\brushless\source\EWARM/../Drivers/CMSIS/Device/ST/STM32F1xx/Include
+D:\电路板\OneDrive\brushless\source\EWARM/../Drivers/CMSIS/Device/ST/STM32F1xx/Include
 -I
-D:\OneDrive\brushless\source\EWARM/../Drivers/CMSIS/Include
+D:\电路板\OneDrive\brushless\source\EWARM/../Drivers/CMSIS/Include
 -I
 D:\Program Files (x86)\IAR Systems\Embedded Workbench 8.0\arm\CMSIS\Core\Include
 -I
@@ -21,15 +21,15 @@ D:\Program Files (x86)\IAR Systems\Embedded Workbench 8.0\arm\inc
 -I
 D:\Program Files (x86)\IAR Systems\Embedded Workbench 8.0\arm\inc\c
 -I
-D:\OneDrive\brushless\source\Inc
+D:\电路板\OneDrive\brushless\source\Inc
 -I
-D:\OneDrive\brushless\source\Drivers\STM32F1xx_HAL_Driver\Inc
+D:\电路板\OneDrive\brushless\source\Drivers\STM32F1xx_HAL_Driver\Inc
 -I
-D:\OneDrive\brushless\source\Drivers\STM32F1xx_HAL_Driver\Inc\Legacy
+D:\电路板\OneDrive\brushless\source\Drivers\STM32F1xx_HAL_Driver\Inc\Legacy
 -I
-D:\OneDrive\brushless\source\Drivers\CMSIS\Device\ST\STM32F1xx\Include
+D:\电路板\OneDrive\brushless\source\Drivers\CMSIS\Device\ST\STM32F1xx\Include
 -I
-D:\OneDrive\brushless\source\Drivers\CMSIS\Include
+D:\电路板\OneDrive\brushless\source\Drivers\CMSIS\Include
 -I
 D:\Program Files (x86)\IAR Systems\Embedded Workbench 8.0\arm\CMSIS\Core\Include
 -I

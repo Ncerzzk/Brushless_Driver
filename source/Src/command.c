@@ -34,7 +34,7 @@ void command_init(void){
   add_cmd("set_mode",set_mode);
   add_cmd("set_duty",set_motor_duty);
   add_cmd("set_mode_s",set_mode_s);
-  
+  add_cmd("read_as5047",read_as5047);
 }
 
 
